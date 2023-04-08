@@ -19,7 +19,7 @@ function MenuItemsPage() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!userState.user?.role === "STAFF") navigate("/");
+    if (userState.user?.role !== "STAFF") navigate("/");
     refreshItemSet();
   }, []);
 
