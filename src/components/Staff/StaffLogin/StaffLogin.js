@@ -6,6 +6,7 @@ import "./StaffLogin.css";
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux'
 import { login } from '../../../redux/userSlice';
+import Button from "../../Button/Button";
 
 const StaffLogin = () => {
   const [email, setEmail] = useState('');
@@ -92,7 +93,7 @@ const StaffLogin = () => {
                 />
                 {passwordError && <span className="error">{passwordError}</span>}
               </div>
-              <button type="submit">Login</button>
+              <Button text="Login" onClick={handleSubmit}/>
             </form>
           </>
         }
