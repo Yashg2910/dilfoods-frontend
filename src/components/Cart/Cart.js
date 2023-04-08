@@ -5,6 +5,7 @@ import CartItem from './CartItem';
 import { addItem, removeItem } from '../../redux/cartSlice';
 import { useDispatch } from 'react-redux'
 import { useSelector } from 'react-redux';
+import Button from "../Button/Button"
 
 function Cart() {
   const dispatch = useDispatch();
@@ -19,7 +20,7 @@ function Cart() {
   function onRemoveItem(item) {
     dispatch(removeItem(item))
   }
-  
+
   return (
     <div className='page'>
       <Navbar/>
@@ -34,6 +35,7 @@ function Cart() {
           </> :
           <h3>No Items added yet</h3>
         }
+        <Button text={"Place Order"}/>
       </div>
     </div>
   )
