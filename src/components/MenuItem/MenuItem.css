@@ -34,12 +34,3 @@
   font-weight: bold;
   margin: 10px 0;
 }
-
-.menu-item-button {
-  background-color: #ff6f00;
-  color: #fff;
-  padding: 10px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
