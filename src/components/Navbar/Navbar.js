@@ -77,6 +77,13 @@ const Navbar = ({forStaff}) => {
               </Link>
             </li>
           }
+          {userState?.user &&
+            <li className="nav-item">
+              <span className='nav-link'>
+                (Welcome, {userState.user.name})
+              </span>
+            </li>
+          }
         </ul>
       </div>
     </nav>

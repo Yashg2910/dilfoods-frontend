@@ -40,8 +40,12 @@ const StaffLogin = () => {
         const response = await usersApi.login(email, password);
         dispatch(login(response));
         userSession.setUserToken(response.token);
-        userSession.setUser(response.user)
-        navigate("/staff/menuItems");
+        userSession.setUser(response.user);
+        if (response.user.role === "STAFF") {
+          navigate("/staff/menuItems");
+        } else {
+          navigate("/");
+        }
       } catch (error) {
         if (error && error.status === 401) {
           setPasswordError('Incorrect email or password');
