@@ -35,7 +35,7 @@ function Cart() {
           </> :
           <h3>No Items added yet</h3>
         }
-        <Button text={"Place Order"}/>
+        <Button text={"Place Order"} disabled={cart.items.length === 0}/>
       </div>
     </div>
   )
