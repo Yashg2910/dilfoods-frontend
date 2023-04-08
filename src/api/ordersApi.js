@@ -10,5 +10,8 @@ export const ordersApi = {
   },
   async updateOrder(order) {
     return apiRequest('PUT', `/orders/${order._id}`, order);
+  },
+  async getMyOrders() {
+    return apiRequest('GET', '/my/orders');
   }
 };
