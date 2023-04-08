@@ -11,6 +11,11 @@ export async function apiRequest(method, path, payload) {
     method
   };
 
+  const token = userSession.getUserToken();
+  if (token) {
+    options.headers["authorization"] = `Bearer ${token}`;
+  }
+
   if (payload) {
     options.body = JSON.stringify(payload);
   }

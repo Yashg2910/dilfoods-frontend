@@ -7,6 +7,7 @@ import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux'
 import { login } from '../../../redux/userSlice';
 import Button from "../../Button/Button";
+import {userSession} from "../../../api/userSession";
 
 const StaffLogin = () => {
   const [email, setEmail] = useState('');
@@ -38,6 +39,7 @@ const StaffLogin = () => {
       try {
         const response = await usersApi.login(email, password);
         dispatch(login(response));
+        userSession.setUserToken(response.token);
         navigate("/staff/menuItems");
       } catch (error) {
         if (error && error.status === 401) {
