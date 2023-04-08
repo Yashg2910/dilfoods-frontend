@@ -5,6 +5,7 @@ import {menuItemsApi} from "../../api/menuItemsApi";
 import MenuItem from '../MenuItem/MenuItem';
 import { addItem } from '../../redux/cartSlice';
 import { useDispatch } from 'react-redux'
+import Button from '../Button/Button';
 
 function Home() {
   const [items, setItems] = useState([]);
@@ -12,8 +13,8 @@ function Home() {
 
   useEffect(() => {
     async function fetchItems() {
-      const items = await menuItemsApi.getItems();
-      setItems(items);
+      const response = await menuItemsApi.getItems();
+      dispatch(setItems(response));
     }
     fetchItems();
   }, []);
@@ -31,7 +32,9 @@ function Home() {
         {/* MENU ITEMS */}
         <div className="menu-items">
           {items.map(item => (
-            <MenuItem key={item._id} item={item} onAddItem={onAddItem}/>
+            <MenuItem key={item._id} item={item}>
+              <Button text="Add to cart" onClick={() => onAddItem(item)}/>
+            </MenuItem>
           ))}
         </div>
       </div>

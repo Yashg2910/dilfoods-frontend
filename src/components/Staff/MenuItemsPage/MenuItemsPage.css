@@ -1,1 +1,11 @@
-@import "../../../styles/global.css"
+@import "../../../styles/global.css";
+
+.menu-item-button-edit {
+  width: 80px;
+  background-color: green;
+}
+
+.menu-item-button-remove {
+  width: 80px;
+  background-color: red;
+}

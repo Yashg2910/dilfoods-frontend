@@ -34,3 +34,11 @@
   font-weight: bold;
   margin: 10px 0;
 }
+
+.menu-item-button-edit {
+  background-color: green;
+}
+
+.menu-item-button-remove {
+  background-color: red;
+}
