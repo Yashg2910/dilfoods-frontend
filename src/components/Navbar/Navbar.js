@@ -1,11 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './Navbar.css';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { logout } from "../../redux/userSlice";
+import { userSession } from '../../api/userSession';
 
 const Navbar = ({forStaff}) => {
   const cart = useSelector((state) => state.cart);
   const userState = useSelector((state) => state.user);
+  const dispatch = useDispatch();
 
   function customerListItems() {
     return (
@@ -67,6 +70,13 @@ const Navbar = ({forStaff}) => {
         <ul className="nav-menu">
           {!forStaff && customerListItems()}
           {forStaff && staffListItems()}
+          {userState?.user &&
+            <li className="nav-item" onClick={() => {dispatch(logout()); userSession.setUser(null)}}>
+              <Link to="/staff/menuItems" className="nav-link">
+                Logout
+              </Link>
+            </li>
+          }
         </ul>
       </div>
     </nav>
