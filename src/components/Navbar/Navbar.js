@@ -1,8 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './Navbar.css';
+import { useSelector } from 'react-redux';
 
 const Navbar = () => {
+  const cart = useSelector((state) => state.cart);
+
   return (
     <nav className="navbar">
       <div className="navbar-container">
@@ -22,12 +25,12 @@ const Navbar = () => {
           </li>
           <li className="nav-item">
             <Link to="/cart" className="nav-link">
-              Cart
+              Cart {!!cart.items.length && <span className='cart-badge'>{cart.items.length}</span>}
             </Link>
           </li>
           <li className="nav-item">
             <Link to="/staff/login" className="nav-link">
-              Staff Login
+              Staff Login 
             </Link>
           </li>
         </ul>

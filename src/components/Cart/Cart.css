@@ -1,0 +1,11 @@
+@import "../../styles/global.css";
+
+.cart {
+  width: 100%;
+}
+.cart-items {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  align-items: center;
+}

@@ -50,3 +50,14 @@
   height: 100%;
   cursor: pointer;
 }
+
+.cart-badge {
+  width: 16px;
+  height: 16px;
+  text-align: center;
+  border-radius: 8px;
+  padding: 4px;
+  background-color: #ff6f00;
+  color: white;
+  font-size: small;
+}
