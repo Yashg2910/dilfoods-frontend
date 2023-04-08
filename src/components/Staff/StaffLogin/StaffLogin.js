@@ -37,7 +37,7 @@ const StaffLogin = () => {
       try {
         const response = await usersApi.login(email, password);
         dispatch(login(response));
-        // navigate("/staff/dashboard");
+        navigate("/staff/menuItems");
       } catch (error) {
         if (error && error.status === 401) {
           setPasswordError('Incorrect email or password');
