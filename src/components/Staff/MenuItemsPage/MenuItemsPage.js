@@ -6,18 +6,21 @@ import { useDispatch, useSelector } from 'react-redux';
 import { menuItemsApi } from '../../../api/menuItemsApi';
 import { setItems } from '../../../redux/menuSlice';
 import Button from '../../Button/Button';
+import { useNavigate } from 'react-router-dom';
 
 function MenuItemsPage() {
   const items = useSelector((state) => state.menu.items);
+  const userState = useSelector((state) => state.user);
   const [showAddForm, setShowAddForm] = useState(false);
   const [showEditForm, setShowEditForm] = useState(false);
   const [editedItem, setEditedItem] = useState({ name: '', price: '', description: '', category: '', imageUrl: '' });
   const fileInputRef = useRef(null);
   const dispatch = useDispatch();
-
+  const navigate = useNavigate();
 
   useEffect(() => {
-    refreshItemSet()
+    if (!userState.user?.role === "STAFF") navigate("/");
+    refreshItemSet();
   }, []);
 
   async function refreshItemSet() {
