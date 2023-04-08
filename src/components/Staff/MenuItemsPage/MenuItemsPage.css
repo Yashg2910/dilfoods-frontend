@@ -9,3 +9,28 @@
   width: 80px;
   background-color: red;
 }
+
+form {
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+  border-radius: 16px;
+  background-color: white;
+}
+input {
+  padding: 8px;
+  margin-bottom: 10px;
+  border-radius: 16px;
+  border: 1px solid gray;
+}
+input:last-child {
+  margin-bottom: 0px;
+}
+button {
+  background-color: #ff6f00;
+  border: none;
+  color: white;
+  padding: 8px;
+  border-radius: 16px;
+  cursor: pointer;
+}
