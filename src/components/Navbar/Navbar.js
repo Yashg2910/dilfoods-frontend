@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './Navbar.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { logout } from "../../redux/userSlice";
@@ -9,6 +9,7 @@ const Navbar = ({forStaff}) => {
   const cart = useSelector((state) => state.cart);
   const userState = useSelector((state) => state.user);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   function customerListItems() {
     return (
@@ -61,6 +62,12 @@ const Navbar = ({forStaff}) => {
     )
   }
 
+  function onLogout() {
+    dispatch(logout());
+    userSession.setUser(null);
+    navigate("/");
+  }
+
   return (
     <nav className="navbar">
       <div className="navbar-container">
@@ -71,7 +78,7 @@ const Navbar = ({forStaff}) => {
           {!forStaff && customerListItems()}
           {forStaff && staffListItems()}
           {userState?.user &&
-            <li className="nav-item" onClick={() => {dispatch(logout()); userSession.setUser(null)}}>
+            <li className="nav-item" onClick={onLogout}>
               <Link to="/staff/menuItems" className="nav-link">
                 Logout
               </Link>
