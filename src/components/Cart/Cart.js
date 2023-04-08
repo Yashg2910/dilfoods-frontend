@@ -6,10 +6,12 @@ import { addItem, removeItem } from '../../redux/cartSlice';
 import { useDispatch } from 'react-redux'
 import { useSelector } from 'react-redux';
 import Button from "../Button/Button"
+import { ordersApi } from '../../api/ordersApi';
 
 function Cart() {
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart);
+  const userState = useSelector((state) => state.user);
 
   const totalPrice = cart.items.reduce(((acc, item) => acc + (item.price * item.quantity)), 0);
 
@@ -21,6 +23,14 @@ function Cart() {
     dispatch(removeItem(item))
   }
 
+  async function placeOrder() {
+    const userId = userState.user._id;
+    try {
+      const res = await ordersApi.createOrder(userId, cart.items, totalPrice);
+    } catch (e) {
+      console.log("Error placing order", e);
+    }
+  }
   return (
     <div className='page'>
       <Navbar/>
@@ -35,7 +45,7 @@ function Cart() {
           </> :
           <h3>No Items added yet</h3>
         }
-        <Button text={"Place Order"} disabled={cart.items.length === 0}/>
+        <Button text={"Place Order"} disabled={cart.items.length === 0} onClick={placeOrder}/>
       </div>
     </div>
   )
