@@ -40,6 +40,7 @@ const StaffLogin = () => {
         const response = await usersApi.login(email, password);
         dispatch(login(response));
         userSession.setUserToken(response.token);
+        userSession.setUser(response.user)
         navigate("/staff/menuItems");
       } catch (error) {
         if (error && error.status === 401) {
