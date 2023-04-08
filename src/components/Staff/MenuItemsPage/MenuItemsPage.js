@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, useRef} from 'react';
 import Navbar from "../../Navbar/Navbar";
 import "./MenuItemsPage.css";
 import MenuItem from "../../MenuItem/MenuItem";
@@ -12,6 +12,7 @@ function MenuItemsPage() {
   const [showAddForm, setShowAddForm] = useState(false);
   const [showEditForm, setShowEditForm] = useState(false);
   const [editedItem, setEditedItem] = useState({ name: '', price: '', description: '', category: '', imageUrl: '' });
+  const fileInputRef = useRef(null);
   const dispatch = useDispatch();
 
 
@@ -60,8 +61,13 @@ function MenuItemsPage() {
     event.preventDefault();
     setShowAddForm(false);
     try {
-      const res = await menuItemsApi.createItem(editedItem);
-      console.log("Res", res);
+      const formData = new FormData();
+      formData.append('name', editedItem.name);
+      formData.append('price', editedItem.price);
+      formData.append('description', editedItem.description);
+      formData.append('category', editedItem.category);
+      formData.append('image', fileInputRef.current.files[0]);
+      await menuItemsApi.createItem(formData);
       refreshItemSet();
     } catch (e) {
       console.log("Error Adding Item", e);
@@ -105,7 +111,7 @@ function MenuItemsPage() {
             <input type="number" name="price" placeholder="Price" value={editedItem.price} onChange={handleNewItemChange} required />
             <input type="text" name="description" placeholder="Description" value={editedItem.description} onChange={handleNewItemChange} />
             <input type="text" name="category" placeholder="Category" value={editedItem.category} onChange={handleNewItemChange} />
-            <input type="text" name="imageUrl" placeholder="Image URI" value={editedItem.imageUrl} onChange={handleNewItemChange} />
+            <input type="file" name="image" accept="image/*" ref={fileInputRef} />
             <button type="submit">Add</button>
           </form>
         )}

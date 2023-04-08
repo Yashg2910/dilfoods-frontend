@@ -1,11 +1,11 @@
-import {apiRequest} from "./apiFetch";
+import {apiRequest, formDataReq} from "./apiFetch";
 
 export const menuItemsApi = {
   async getItems() {
     return apiRequest('GET', `/menuItems`);
   },
   async createItem(item) {
-    return apiRequest('POST', `/menuItems`, item);
+    return formDataReq('POST', `/menuItems`, item);
   },
   async updateItem(item) {
     return apiRequest('PUT', `/menuItems/${item._id}`, item);

@@ -29,3 +29,10 @@ export async function apiRequest(method, path, payload) {
     return response.json();
   });
 }
+
+export async function formDataReq(method, path, payload) {
+  return fetch(`${baseUrl}${path}`, {
+    method,
+    body: payload
+  })
+}
