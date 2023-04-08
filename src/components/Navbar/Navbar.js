@@ -3,7 +3,9 @@ import { Link, useNavigate } from 'react-router-dom';
 import './Navbar.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { logout } from "../../redux/userSlice";
+import { clearCart } from "../../redux/cartSlice";
 import { userSession } from '../../api/userSession';
+
 
 const Navbar = ({forStaff}) => {
   const cart = useSelector((state) => state.cart);
@@ -66,6 +68,7 @@ const Navbar = ({forStaff}) => {
     dispatch(logout());
     userSession.setUser(null);
     navigate("/");
+    clearCart();
   }
 
   return (
