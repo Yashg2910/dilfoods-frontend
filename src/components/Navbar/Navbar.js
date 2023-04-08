@@ -51,12 +51,12 @@ const Navbar = ({forStaff}) => {
     return (
       <>
         <li className="nav-item">
-          <Link to="/staff/login" className="nav-link">
+          <Link to="/staff/menuItems" className="nav-link">
             Menu Items
           </Link>
         </li>
         <li className="nav-item">
-          <Link to="/staff/login" className="nav-link">
+          <Link to="/staff/orders" className="nav-link">
             Orders
           </Link>
         </li>
