@@ -3,9 +3,12 @@ import Navbar from "../Navbar/Navbar";
 import "./Home.css";
 import {menuItemsApi} from "../../api/menuItemsApi";
 import MenuItem from '../MenuItem/MenuItem';
+import { addItem } from '../../redux/cartSlice';
+import { useDispatch } from 'react-redux'
 
 function Home() {
   const [items, setItems] = useState([]);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     async function fetchItems() {
@@ -14,6 +17,10 @@ function Home() {
     }
     fetchItems();
   }, []);
+
+  function onAddItem(item) {
+    dispatch(addItem(item));
+  }
 
   return (
     <div className='page'>
@@ -24,7 +31,7 @@ function Home() {
         {/* MENU ITEMS */}
         <div className="menu-items">
           {items.map(item => (
-            <MenuItem key={item._id} item={item}/>
+            <MenuItem key={item._id} item={item} onAddItem={onAddItem}/>
           ))}
         </div>
       </div>
