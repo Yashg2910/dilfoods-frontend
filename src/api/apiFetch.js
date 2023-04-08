@@ -37,8 +37,16 @@ export async function apiRequest(method, path, payload) {
 }
 
 export async function formDataReq(method, path, payload) {
-  return fetch(`${baseUrl}${path}`, {
+  const options = {
+    headers: {},
     method,
     body: payload
-  })
+  }
+
+  const token = userSession.getUserToken();
+  if (token) {
+    options.headers["authorization"] = `Bearer ${token}`;
+  }
+
+  return fetch(`${baseUrl}${path}`, options)
 }
