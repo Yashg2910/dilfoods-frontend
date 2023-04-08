@@ -2,7 +2,7 @@ import React from 'react'
 import Navbar from "../Navbar/Navbar";
 import "./Cart.css";
 import CartItem from './CartItem';
-import { addItem, removeItem, clearCart } from '../../redux/cartSlice';
+import { addItem, removeItem } from '../../redux/cartSlice';
 import { useDispatch } from 'react-redux'
 import { useSelector } from 'react-redux';
 
@@ -19,11 +19,7 @@ function Cart() {
   function onRemoveItem(item) {
     dispatch(removeItem(item))
   }
-
-  function onClearCart() {
-
-  }
-
+  
   return (
     <div className='page'>
       <Navbar/>
