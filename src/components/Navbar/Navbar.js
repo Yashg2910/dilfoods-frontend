@@ -30,7 +30,7 @@ const Navbar = ({forStaff}) => {
           Staff Login 
         </Link>
       </li>
-      {userState?.user?.role == "STAFF" &&
+      {userState?.user?.role === "STAFF" &&
         <li className="nav-item">
           <Link to="/staff/menuItems" className="nav-link">
             Dashboard
