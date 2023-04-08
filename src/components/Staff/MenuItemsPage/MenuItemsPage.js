@@ -84,7 +84,7 @@ function MenuItemsPage() {
 
   return (
     <div className='page'>
-      <Navbar/>
+      <Navbar forStaff={true}/>
       <div className='page-content'>
         <h1>Menu Items</h1>
         <Button onClick={onAddItem}>Add Item</Button>
