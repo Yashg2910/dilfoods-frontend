@@ -2,16 +2,18 @@ import React from 'react'
 import Navbar from "../Navbar/Navbar";
 import "./Cart.css";
 import CartItem from './CartItem';
-import { addItem, removeItem } from '../../redux/cartSlice';
+import { addItem, removeItem, clearCart } from '../../redux/cartSlice';
 import { useDispatch } from 'react-redux'
 import { useSelector } from 'react-redux';
 import Button from "../Button/Button"
 import { ordersApi } from '../../api/ordersApi';
+import { useNavigate } from 'react-router-dom';
 
 function Cart() {
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart);
   const userState = useSelector((state) => state.user);
+  const navigate = useNavigate();
 
   const totalPrice = cart.items.reduce(((acc, item) => acc + (item.price * item.quantity)), 0);
 
@@ -27,6 +29,8 @@ function Cart() {
     const userId = userState.user._id;
     try {
       const res = await ordersApi.createOrder(userId, cart.items, totalPrice);
+      clearCart();
+      navigate("/orders");
     } catch (e) {
       console.log("Error placing order", e);
     }
