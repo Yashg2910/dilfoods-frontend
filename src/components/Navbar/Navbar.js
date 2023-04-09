@@ -68,7 +68,7 @@ const Navbar = ({forStaff}) => {
     dispatch(logout());
     userSession.setUser(null);
     navigate("/");
-    clearCart();
+    dispatch(clearCart());
   }
 
   return (

@@ -29,7 +29,7 @@ function Cart() {
     const userId = userState.user._id;
     try {
       const res = await ordersApi.createOrder(userId, cart.items, totalPrice);
-      clearCart();
+      dispatch(clearCart());
       navigate("/orders");
     } catch (e) {
       console.log("Error placing order", e);
