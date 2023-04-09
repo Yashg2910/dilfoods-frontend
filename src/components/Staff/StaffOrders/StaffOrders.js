@@ -23,7 +23,7 @@ function StaffOrders() {
 
   return (
     <div className='page'>
-      <Navbar/>
+      <Navbar forStaff={true}/>
       <div className='page-content'>
         <h1>All Orders</h1>
         {userState.user?.role !== "STAFF" ?
