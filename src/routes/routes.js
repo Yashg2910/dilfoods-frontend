@@ -3,6 +3,7 @@ import Cart from "../components/Cart/Cart";
 import StaffLogin from "../components/Staff/StaffLogin/StaffLogin";
 import MenuItemsPage from "../components/Staff/MenuItemsPage/MenuItemsPage";
 import ErrorPage from "../components/ErrorPage/ErrorPage";
+import Orders from "../components/Orders/Orders";
 
 const routes = [
   {
@@ -21,6 +22,10 @@ const routes = [
   {
     path: "/staff/menuItems",
     element: <MenuItemsPage/>
+  },
+  {
+    path: "/orders",
+    element: <Orders/>
   }
 ];
 

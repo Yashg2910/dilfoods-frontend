@@ -2,7 +2,7 @@ import React from 'react';
 import "./CartItem.css";
 import { config } from '../../config';
 
-function CartItem({item, onAddItem, onRemoveItem}) {
+function CartItem({item, onAddItem, onRemoveItem, hideButtons}) {
   return (
     <div className='cart-item'>
       <img src={`${config.API_HOST}/uploads/${item.imageUrl}`} alt={item.name} className="cart-item-image" />
@@ -11,9 +11,9 @@ function CartItem({item, onAddItem, onRemoveItem}) {
         <p>{item.price}</p>
       </div>
       <div className='quantity-container'>
-        <button className='quantity-btn' onClick={onRemoveItem}>-</button>
+        {!hideButtons && <button className='quantity-btn' onClick={onRemoveItem}>-</button>}
         <span>{item.quantity}</span>
-        <button className='quantity-btn' onClick={onAddItem}>+</button>
+        {!hideButtons && <button className='quantity-btn' onClick={onAddItem}>+</button>}
       </div>
     </div>
   )

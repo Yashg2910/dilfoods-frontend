@@ -1,0 +1,25 @@
+@import "../../styles/palette.css";
+
+.orderItem {
+  background-color:var(--primary);
+  padding: 20px;
+  border-radius: 20px;
+  height: 100%;
+  width: fit-content;
+  margin-bottom: 20px;
+}
+
+.total {
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.status {
+  padding: 10px;
+  border-radius: 20px;
+  width: fit-content;
+}
+
+.pending {
+  background-color: lightgray;
+}
