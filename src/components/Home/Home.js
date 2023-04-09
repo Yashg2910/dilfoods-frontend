@@ -23,7 +23,9 @@ function Home() {
     } catch (e) {
       toast.error('Failed to fetch menu items. Server down.');
     }
-    dispatch(setItems(response));
+    if (response) {
+      dispatch(setItems([...response]));
+    }
   }
 
   function onAddItem(item) {
