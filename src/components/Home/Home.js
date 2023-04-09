@@ -45,6 +45,7 @@ function Home() {
               <Button text="Add to cart" onClick={() => onAddItem(item)}/>
             </MenuItem>
           ))}
+          {items.length == 0 && <p>No items in the menu yet.</p>}
         </div>
       </div>
     </div>
