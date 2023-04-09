@@ -81,12 +81,16 @@ function Cart() {
           </> :
           <h3>No Items added yet</h3>
         }
-        {otpState !== "verified" && <input type="text" name="phone" placeholder="Phone number" value={userState.user?.phone || phone} onChange={(e) => setPhone(e.target.value)} disabled={otpState === "sent"}/>}
-        {otpState === "unsent" && <Button text="Send OTP" onClick={sendOTP}/>}
-        {otpState === "sent" && 
+        {cart.items.length > 0 &&
           <>
-            <input type="text" name="otp" placeholder="Enter OTP" value={otp} onChange={(e) => setOtp(e.target.value)} />
-            <Button text="Verify OTP" onClick={verifyOtp}/>
+            {otpState !== "verified" && <input type="text" name="phone" placeholder="Phone number" value={userState.user?.phone || phone} onChange={(e) => setPhone(e.target.value)} disabled={otpState === "sent"}/>}
+            {otpState === "unsent" && <Button text="Send OTP" onClick={sendOTP}/>}
+            {otpState === "sent" && 
+              <>
+                <input type="text" name="otp" placeholder="Enter OTP" value={otp} onChange={(e) => setOtp(e.target.value)} />
+                <Button text="Verify OTP" onClick={verifyOtp}/>
+              </>
+            }
           </>
         }
         <Button text={"Place Order"} disabled={cart.items.length === 0 || otpState !== "verified"} onClick={placeOrder}/>
