@@ -8,6 +8,8 @@ import { useEffect } from 'react';
 import { userSession } from './api/userSession';
 import { useDispatch } from 'react-redux';
 import {login} from './redux/userSlice';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const router = createBrowserRouter(routes);
 
@@ -22,6 +24,7 @@ function App() {
   })
   return (
     <div className="App">
+      <ToastContainer />
       <RouterProvider router={router}/>
     </div>
   );

@@ -6,18 +6,25 @@ import MenuItem from '../MenuItem/MenuItem';
 import { addItem } from '../../redux/cartSlice';
 import { useDispatch } from 'react-redux'
 import Button from '../Button/Button';
+import { toast } from 'react-toastify';
 
 function Home() {
   const [items, setItems] = useState([]);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    async function fetchItems() {
-      const response = await menuItemsApi.getItems();
-      dispatch(setItems(response));
-    }
     fetchItems();
   }, []);
+
+  async function fetchItems() {
+    let response;
+    try {
+      response = await menuItemsApi.getItems();
+    } catch (e) {
+      toast.error('Failed to fetch menu items. Server down.');
+    }
+    dispatch(setItems(response));
+  }
 
   function onAddItem(item) {
     dispatch(addItem(item));

@@ -7,6 +7,7 @@ import { menuItemsApi } from '../../../api/menuItemsApi';
 import { setItems } from '../../../redux/menuSlice';
 import Button from '../../Button/Button';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 function MenuItemsPage() {
   const items = useSelector((state) => state.menu.items);
@@ -47,6 +48,7 @@ function MenuItemsPage() {
       refreshItemSet();
     } catch (e) {
       console.log("Error updating Item", e);
+      toast.error("Error updating Item");
     }
   };
 
@@ -74,6 +76,7 @@ function MenuItemsPage() {
       refreshItemSet();
     } catch (e) {
       console.log("Error Adding Item", e);
+      toast.error("Error Adding Item");
     }
   };
 
@@ -114,7 +117,7 @@ function MenuItemsPage() {
             <input type="number" name="price" placeholder="Price" value={editedItem.price} onChange={handleNewItemChange} required />
             <input type="text" name="description" placeholder="Description" value={editedItem.description} onChange={handleNewItemChange} />
             <input type="text" name="category" placeholder="Category" value={editedItem.category} onChange={handleNewItemChange} />
-            <input type="file" name="image" accept="image/*" ref={fileInputRef} />
+            <input type="file" name="image" accept="image/*" ref={fileInputRef} required/>
             <button type="submit">Add</button>
           </form>
         )}
