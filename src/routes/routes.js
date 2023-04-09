@@ -4,6 +4,7 @@ import StaffLogin from "../components/Staff/StaffLogin/StaffLogin";
 import MenuItemsPage from "../components/Staff/MenuItemsPage/MenuItemsPage";
 import ErrorPage from "../components/ErrorPage/ErrorPage";
 import Orders from "../components/Orders/Orders";
+import StaffOrders from "../components/Staff/StaffOrders/StaffOrders";
 
 const routes = [
   {
@@ -26,6 +27,10 @@ const routes = [
   {
     path: "/orders",
     element: <Orders/>
+  },
+  {
+    path: "/staff/orders",
+    element: <StaffOrders/>
   }
 ];
 
