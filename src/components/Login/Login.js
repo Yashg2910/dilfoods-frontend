@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { usersApi } from '../../../api/usersApi';
-import Navbar from '../../Navbar/Navbar';
-import "./StaffLogin.css";
+import { usersApi } from '../../api/usersApi';
+import Navbar from '../Navbar/Navbar';
+import "./Login.css";
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux'
-import { login } from '../../../redux/userSlice';
-import Button from "../../Button/Button";
-import {userSession} from "../../../api/userSession";
+import { login } from '../../redux/userSlice';
+import Button from "../Button/Button";
+import {userSession} from "../../api/userSession";
 
-const StaffLogin = () => {
+const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [emailError, setEmailError] = useState('');
@@ -78,7 +78,7 @@ const StaffLogin = () => {
             <p>Email: {userState.user.email}</p>
           </> :
           <>
-            <h1>Staff Login</h1>
+            <h1>Login</h1>
             <form onSubmit={handleSubmit}>
               <div className="form-group">
                 <label htmlFor="email">Email</label>
@@ -110,4 +110,4 @@ const StaffLogin = () => {
   );
 };
 
-export default StaffLogin;
+export default Login;

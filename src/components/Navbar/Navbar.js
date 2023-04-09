@@ -31,11 +31,6 @@ const Navbar = ({forStaff}) => {
           Cart {!!cart.items.length && <span className='cart-badge'>{cart.items.length}</span>}
         </Link>
       </li>
-      <li className="nav-item">
-        <Link to="/staff/login" className="nav-link">
-          Staff Login 
-        </Link>
-      </li>
       {userState?.user?.role === "STAFF" &&
         <li className="nav-item">
           <Link to="/staff/menuItems" className="nav-link">
@@ -80,6 +75,13 @@ const Navbar = ({forStaff}) => {
         <ul className="nav-menu">
           {!forStaff && customerListItems()}
           {forStaff && staffListItems()}
+          {!userState?.user &&
+            <li className="nav-item">
+              <Link to="/login" className="nav-link">
+                Login 
+              </Link>
+            </li>
+          }
           {userState?.user &&
             <li className="nav-item" onClick={onLogout}>
               <Link to="/staff/menuItems" className="nav-link">
