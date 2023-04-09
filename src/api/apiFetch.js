@@ -49,4 +49,16 @@ export async function formDataReq(method, path, payload) {
   }
 
   return fetch(`${baseUrl}${path}`, options)
+  .then((response) => {
+    if (!response.ok) {
+      if (response.status === 401 || response.status === 403) {
+        store.dispatch(logout());
+      }
+      return Promise.reject(response);
+    }
+    if (response.status === 204) {
+      return null;
+    }
+    return response.json();
+  });
 }
